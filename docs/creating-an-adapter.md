@@ -71,11 +71,17 @@ Rules for trust:
 ## 4. Fixtures and tests
 
 Add a realistic fixture repo under `fixtures/<id>/...` (basic, nested,
-conflicts — see the existing ones) and integration tests in
-`tests/adapters.test.ts`:
+conflicts — see the existing ones) for manual testing, and hermetic
+integration tests in `tests/adapters.test.ts`. Build test repos in temp dirs
+with their own `.git/HEAD` (see `tests/helpers.ts` `mkRepo`) so results never
+depend on whether the checkout itself sits inside a git repository:
 
 ```ts
-const ec = await resolveAgent(fx("<id>", "basic"), "<id>", HOME);
+const dir = await mkRepo({
+  "AGENTS.md": "Always use pnpm.\n",
+  ".opencode/agents/build.md": "Run tests first.\n",
+});
+const ec = await resolveAgent(dir, "<id>", HOME);
 assert.ok(ec.loaded.some((s) => s.kind === "project"));
 ```
 

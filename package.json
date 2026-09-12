@@ -8,8 +8,10 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "npm run build --workspaces",
-    "test": "npm run build --workspaces && node --test tests/tokenizer.test.ts tests/similarity.test.ts tests/conflicts.test.ts tests/adapters.test.ts tests/edge.test.ts tests/cli.test.ts",
+    "build:core": "npm run build --workspace @agentlens/core",
+    "build:cli": "npm run build --workspace agentlens",
+    "build": "npm run build:core && npm run build:cli",
+    "test": "npm run build && node --test tests/tokenizer.test.ts tests/similarity.test.ts tests/conflicts.test.ts tests/adapters.test.ts tests/edge.test.ts tests/cli.test.ts",
     "lint": "npm run lint --workspaces",
     "scan": "node packages/cli/dist/index.js scan",
     "benchmark": "node benchmarks/bench.mjs"
