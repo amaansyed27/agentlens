@@ -1,0 +1,8 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": ["docs/standards.md"],
+  "mcp": {
+    "github": { "type": "remote", "url": "https://api.githubcopilot.com/mcp/" },
+    "filesystem": { "type": "local", "command": "mcp-filesystem" }
+  }
+}

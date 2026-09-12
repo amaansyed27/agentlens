@@ -1,0 +1,53 @@
+{
+  "name": "@agentlens/core",
+  "version": "0.1.0",
+  "description": "Core scanner library for AgentLens — DevTools for AI coding-agent context",
+  "keywords": [
+    "agentlens",
+    "ai",
+    "coding-agent",
+    "agents-md",
+    "context",
+    "devtools",
+    "opencode",
+    "codex",
+    "claude-code"
+  ],
+  "license": "MIT",
+  "author": "AgentLens contributors",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amaansyed27/agentlens.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://github.com/amaansyed27/agentlens#readme",
+  "bugs": {
+    "url": "https://github.com/amaansyed27/agentlens/issues"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "README.md"],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "lint": "tsc -p tsconfig.json --noEmit",
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\""
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.2",
+    "typescript": "^5.6.0"
+  }
+}
