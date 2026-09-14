@@ -57,7 +57,7 @@ npx instrace scan
 ```
 
 ```bash
-npm install -g instrace        # CLI
+npm install -g instrace       # CLI
 npm install instrace-core     # library
 ```
 
@@ -118,7 +118,7 @@ Every command accepts `--json`. Stdout then carries exactly one document:
 ```json
 {
   "schemaVersion": 1,
-  "instraceVersion": "0.1.0",
+  "instraceVersion": "0.1.1",
   "command": "scan",
   "data": { "version": 1, "cwd": "...", "agents": ["..."] }
 }
