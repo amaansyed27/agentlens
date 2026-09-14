@@ -1,6 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { findDuplicates } from "@agentlens/core";
+import { findDuplicates } from "instrace-core";
 
 const BLOCK = [
   "Use TypeScript for all new code.",

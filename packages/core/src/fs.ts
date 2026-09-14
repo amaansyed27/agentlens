@@ -4,7 +4,7 @@ import * as os from "node:os";
 import * as path from "node:path";
 
 export function effectiveHomeDir(explicit?: string): string {
-  return explicit ?? process.env.AGENTLENS_HOME ?? os.homedir();
+  return explicit ?? process.env.INSTRACE_HOME ?? os.homedir();
 }
 
 export function expandHome(p: string, home: string): string {

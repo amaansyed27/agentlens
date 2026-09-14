@@ -1,9 +1,9 @@
 {
-  "name": "agentlens",
+  "name": "instrace",
   "version": "0.1.0",
-  "description": "AgentLens CLI — DevTools for AI coding-agent context",
+  "description": "Instrace CLI — DevTools for AI coding-agent context",
   "keywords": [
-    "agentlens",
+    "instrace",
     "ai",
     "coding-agent",
     "agents-md",
@@ -14,19 +14,19 @@
     "claude-code"
   ],
   "license": "MIT",
-  "author": "AgentLens contributors",
+  "author": "Instrace contributors",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amaansyed27/agentlens.git",
+    "url": "git+https://github.com/amaansyed27/instrace.git",
     "directory": "packages/cli"
   },
-  "homepage": "https://github.com/amaansyed27/agentlens#readme",
+  "homepage": "https://github.com/amaansyed27/instrace#readme",
   "bugs": {
-    "url": "https://github.com/amaansyed27/agentlens/issues"
+    "url": "https://github.com/amaansyed27/instrace/issues"
   },
   "type": "module",
   "bin": {
-    "agentlens": "./dist/index.js"
+    "instrace": "./dist/index.js"
   },
   "files": ["dist", "README.md"],
   "engines": {
@@ -41,7 +41,7 @@
     "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\""
   },
   "dependencies": {
-    "@agentlens/core": "^0.1.0"
+    "instrace-core": "^0.1.0"
   },
   "devDependencies": {
     "@types/node": "^22.20.2",

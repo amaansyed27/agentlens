@@ -1,4 +1,4 @@
-/** Public API of @agentlens/core. */
+/** Public API of instrace-core. */
 export type {
   AgentScan,
   ConflictFinding,

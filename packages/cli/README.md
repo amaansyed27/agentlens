@@ -1,9 +1,9 @@
-# agentlens
+# instrace
 
-CLI for AgentLens — DevTools for AI coding-agent context.
+CLI for Instrace — DevTools for AI coding-agent context.
 
 ```bash
-npx agentlens scan
+npx instrace scan
 ```
 
 See the [main README](../../README.md) for full documentation.

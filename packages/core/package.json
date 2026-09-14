@@ -1,9 +1,9 @@
 {
-  "name": "@agentlens/core",
+  "name": "instrace-core",
   "version": "0.1.0",
-  "description": "Core scanner library for AgentLens — DevTools for AI coding-agent context",
+  "description": "Core scanner library for Instrace — DevTools for AI coding-agent context",
   "keywords": [
-    "agentlens",
+    "instrace",
     "ai",
     "coding-agent",
     "agents-md",
@@ -14,15 +14,15 @@
     "claude-code"
   ],
   "license": "MIT",
-  "author": "AgentLens contributors",
+  "author": "Instrace contributors",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amaansyed27/agentlens.git",
+    "url": "git+https://github.com/amaansyed27/instrace.git",
     "directory": "packages/core"
   },
-  "homepage": "https://github.com/amaansyed27/agentlens#readme",
+  "homepage": "https://github.com/amaansyed27/instrace#readme",
   "bugs": {
-    "url": "https://github.com/amaansyed27/agentlens/issues"
+    "url": "https://github.com/amaansyed27/instrace/issues"
   },
   "type": "module",
   "main": "./dist/index.js",

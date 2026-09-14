@@ -3,13 +3,13 @@ import assert from "node:assert/strict";
 import { promises as fs } from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import { scanProject, resolveAgent, explainPath } from "@agentlens/core";
+import { scanProject, resolveAgent, explainPath } from "instrace-core";
 
 let dir = "";
-const HOME = path.join(os.tmpdir(), "agentlens-no-such-home");
+const HOME = path.join(os.tmpdir(), "instrace-no-such-home");
 
 beforeEach(async () => {
-  dir = await fs.mkdtemp(path.join(os.tmpdir(), "agentlens-edge-"));
+  dir = await fs.mkdtemp(path.join(os.tmpdir(), "instrace-edge-"));
 });
 
 afterEach(async () => {

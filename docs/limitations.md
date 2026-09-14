@@ -1,6 +1,6 @@
 # Limitations
 
-AgentLens reconstructs context from files and documented resolution rules. It
+Instrace reconstructs context from files and documented resolution rules. It
 does not (and cannot) observe everything:
 
 - **Token counts are estimates.** The local heuristic (~4 chars/token) is for
@@ -26,6 +26,6 @@ does not (and cannot) observe everything:
   expansion). Symlinked repos are followed with cycle protection; exotic
   setups (remote filesystems, case-insensitive collisions) get best-effort
   handling.
-- **No live session data.** AgentLens shows what an agent *should* load from
+- **No live session data.** Instrace shows what an agent *should* load from
   configuration, not what a running session actually holds (compaction,
   session memory, and MCP runtime state are invisible from disk).
