@@ -34,8 +34,11 @@ jobs:
             .split('\0')
             .filter(Boolean);
 
+          // Workflow files are updated/deleted separately through the GitHub connector,
+          // because the Actions token cannot modify workflows.
           const skip = new Set([
             'docs/rename-inventory.md',
+            '.github/workflows/ci.yml',
             '.github/workflows/rename-instrace.yml',
           ]);
 
@@ -62,9 +65,6 @@ jobs:
             '**Trace what instructions your coding agent actually sees.**',
           );
           fs.writeFileSync(readmePath, readme);
-
-          // This workflow is intentionally one-shot. Delete it in the rename commit.
-          fs.rmSync('.github/workflows/rename-instrace.yml', { force: true });
           NODE
 
       - name: Verify public identifiers
@@ -81,8 +81,8 @@ jobs:
           if (core.name !== 'instrace-core') throw new Error(`core package: ${core.name}`);
           if (cli.dependencies?.['instrace-core'] !== '^0.1.0') throw new Error('CLI core dependency incorrect');
           NODE
-          if git grep -n -E 'AgentLens|agentlens|@agentlens/core|AGENTLENS_HOME|agentlensVersion' -- ':!docs/rename-inventory.md'; then
-            echo 'Old AgentLens identifiers remain' >&2
+          if git grep -n -E 'AgentLens|agentlens|@agentlens/core|AGENTLENS_HOME|agentlensVersion' -- ':!docs/rename-inventory.md' ':!.github/workflows/ci.yml' ':!.github/workflows/rename-instrace.yml'; then
+            echo 'Old AgentLens identifiers remain outside workflow files' >&2
             exit 1
           fi
 
