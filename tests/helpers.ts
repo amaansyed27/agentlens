@@ -29,7 +29,7 @@ export const HOME = fx("home");
 
 /** Create an isolated repo: temp dir + `.git/HEAD` + the given files. */
 export async function mkRepo(files: Record<string, string | Buffer>): Promise<string> {
-  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "agentlens-repo-"));
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "instrace-repo-"));
   await fs.mkdir(path.join(dir, ".git"), { recursive: true });
   await fs.writeFile(path.join(dir, ".git", "HEAD"), "ref: refs/heads/main\n");
   for (const [rel, content] of Object.entries(files)) {

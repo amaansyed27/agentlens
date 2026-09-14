@@ -23,7 +23,7 @@ const BLOCK = [
 ].join("\n");
 
 async function main() {
-  const root = await fs.mkdtemp(path.join(os.tmpdir(), "agentlens-bench-"));
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), "instrace-bench-"));
   await fs.mkdir(path.join(root, ".git"), { recursive: true });
 
   // Nested instruction files, some sharing the duplicated block.

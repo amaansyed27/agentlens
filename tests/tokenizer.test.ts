@@ -1,6 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { estimateTokens, describeText } from "@agentlens/core";
+import { estimateTokens, describeText } from "instrace-core";
 
 describe("tokenizer", () => {
   it("estimates ~4 chars per token", () => {

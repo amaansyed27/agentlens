@@ -7,7 +7,7 @@ import {
   explainPath,
   compareAgents,
   resolveAgent,
-} from "@agentlens/core";
+} from "instrace-core";
 import { HOME, mkRepo } from "./helpers.js";
 
 const tmp: string[] = [];
@@ -19,7 +19,7 @@ afterEach(async () => {
 });
 
 before(() => {
-  process.env.AGENTLENS_HOME = HOME;
+  process.env.INSTRACE_HOME = HOME;
 });
 
 async function repo(files: Record<string, string>): Promise<string> {

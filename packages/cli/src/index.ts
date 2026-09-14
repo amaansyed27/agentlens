@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/** AgentLens CLI — thin rendering over @agentlens/core. */
+/** Instrace CLI — thin rendering over instrace-core. */
 import { promises as fs } from "node:fs";
 import * as path from "node:path";
 import {
@@ -8,7 +8,7 @@ import {
   resolveAgent,
   scanProject,
   listAdapters,
-} from "@agentlens/core";
+} from "instrace-core";
 import { parseArgs } from "./args.js";
 import { fmt, makeStyler, pad, plural } from "./format.js";
 
@@ -26,10 +26,10 @@ function cliVersion(): string {
   }
 }
 
-const HELP = `AgentLens — DevTools for your coding agent's context.
+const HELP = `Instrace — DevTools for your coding agent's context.
 
 Usage:
-  agentlens [command] [options]
+  instrace [command] [options]
 
 Commands:
   scan                  Overview of detected agents, sources, tokens, warnings
@@ -56,7 +56,7 @@ Exit codes:
 `;
 
 function homeDir(): string | undefined {
-  return process.env.AGENTLENS_HOME;
+  return process.env.INSTRACE_HOME;
 }
 
 async function main(): Promise<number> {
@@ -64,8 +64,8 @@ async function main(): Promise<number> {
   try {
     parsed = parseArgs(process.argv.slice(2));
   } catch (e) {
-    console.error(`agentlens: ${e instanceof Error ? e.message : e}`);
-    console.error(`Run "agentlens --help" for usage.`);
+    console.error(`instrace: ${e instanceof Error ? e.message : e}`);
+    console.error(`Run "instrace --help" for usage.`);
     return 1;
   }
   const { command, positional, flags } = parsed;
@@ -95,16 +95,16 @@ async function main(): Promise<number> {
       case "duplicates": return await cmdDuplicates(flags, st);
       case "explain": {
         if (!positional[0]) {
-          console.error("agentlens explain <path>  (missing path)");
-          console.error(`Run "agentlens --help" for usage.`);
+          console.error("instrace explain <path>  (missing path)");
+          console.error(`Run "instrace --help" for usage.`);
           return 1;
         }
         return await cmdExplain(positional[0], flags, st);
       }
       case "diff": {
         if (!positional[0] || !positional[1]) {
-          console.error("agentlens diff <agent-a> <agent-b>  (expected two agent ids)");
-          console.error(`Run "agentlens --help" for usage.`);
+          console.error("instrace diff <agent-a> <agent-b>  (expected two agent ids)");
+          console.error(`Run "instrace --help" for usage.`);
           return 1;
         }
         return await cmdDiff(positional[0], positional[1], flags, st);
@@ -114,7 +114,7 @@ async function main(): Promise<number> {
         return 2;
     }
   } catch (e) {
-    console.error(`agentlens: ${e instanceof Error ? e.message : String(e)}`);
+    console.error(`instrace: ${e instanceof Error ? e.message : String(e)}`);
     return 1;
   }
 }
@@ -126,7 +126,7 @@ function emitJson(command: string, data: unknown): void {
     JSON.stringify(
       {
         schemaVersion: 1,
-        agentlensVersion: cliVersion(),
+        instraceVersion: cliVersion(),
         command,
         data,
       },
@@ -146,14 +146,14 @@ async function resolveCwd(command: string, cwd: string): Promise<string | null> 
     stat = null;
   }
   if (!stat) {
-    console.error(`AgentLens could not run "${command}".`);
+    console.error(`Instrace could not run "${command}".`);
     console.error(``);
     console.error(`Directory does not exist:`);
     console.error(abs);
     return null;
   }
   if (!stat.isDirectory()) {
-    console.error(`AgentLens could not run "${command}".`);
+    console.error(`Instrace could not run "${command}".`);
     console.error(``);
     console.error(`Not a directory:`);
     console.error(abs);
@@ -171,7 +171,7 @@ async function cmdScan(flags: ReturnType<typeof parseArgs>["flags"], st: ReturnT
     return 0;
   }
   console.log("");
-  console.log(st.bold("AgentLens"));
+  console.log(st.bold("Instrace"));
   console.log("");
   console.log(st.bold("Detected agents"));
   const anyDetected = report.agents.some((a) => a.detected);
@@ -236,7 +236,7 @@ async function cmdTree(flags: ReturnType<typeof parseArgs>["flags"], st: ReturnT
 }
 
 function printTree(
-  ec: { loaded: import("@agentlens/core").EffectiveContext["loaded"]; notLoaded: import("@agentlens/core").EffectiveContext["notLoaded"] },
+  ec: { loaded: import("instrace-core").EffectiveContext["loaded"]; notLoaded: import("instrace-core").EffectiveContext["notLoaded"] },
   cwd: string,
   st: ReturnType<typeof makeStyler>,
 ): void {
@@ -481,7 +481,7 @@ function label(id: string): string {
 }
 
 function shortPath(abs: string, cwd: string): string {
-  const home = process.env.AGENTLENS_HOME ?? process.env.HOME ?? "";
+  const home = process.env.INSTRACE_HOME ?? process.env.HOME ?? "";
   if (home && (abs === home || abs.startsWith(home + "/") || abs.startsWith(home + "\\"))) {
     return "~" + abs.slice(home.length).replace(/\\/g, "/");
   }
@@ -543,7 +543,7 @@ function base(p: string): string {
 main().then(
   (code) => process.exit(code),
   (e) => {
-    console.error(`agentlens: ${e instanceof Error ? e.message : String(e)}`);
+    console.error(`instrace: ${e instanceof Error ? e.message : String(e)}`);
     process.exit(1);
   },
 );

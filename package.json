@@ -1,15 +1,15 @@
 {
   "private": true,
-  "name": "agentlens-monorepo",
+  "name": "instrace-monorepo",
   "version": "0.1.0",
-  "description": "AgentLens monorepo — DevTools for AI coding-agent context",
+  "description": "Instrace monorepo — DevTools for AI coding-agent context",
   "type": "module",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "build:core": "npm run build --workspace @agentlens/core",
-    "build:cli": "npm run build --workspace agentlens",
+    "build:core": "npm run build --workspace instrace-core",
+    "build:cli": "npm run build --workspace instrace",
     "build:tests": "tsc -p tests/tsconfig.json",
     "build": "npm run build:core && npm run build:cli",
     "test": "npm run build && npm run build:tests && node --test tests/dist/tokenizer.test.js tests/dist/similarity.test.js tests/dist/conflicts.test.js tests/dist/adapters.test.js tests/dist/edge.test.js tests/dist/cli.test.js",

@@ -1,6 +1,6 @@
 # Creating an adapter
 
-AgentLens learns a new coding agent through one file plus one registry line.
+Instrace learns a new coding agent through one file plus one registry line.
 Core orchestration (`scanProject`, `explainPath`, `compareAgents`) never
 branches on agent ids, so you don't need to understand the whole codebase.
 
@@ -19,7 +19,7 @@ Shared helpers live in `helpers.ts` (`fileSource`, `missingSource`,
 ## 2. Implement the interface
 
 ```ts
-import { registerAdapter, type AgentAdapter } from "@agentlens/core";
+import { registerAdapter, type AgentAdapter } from "instrace-core";
 
 export const myAdapter: AgentAdapter = {
   id: "my-agent",               // stable, lowercase, used by --agent
@@ -44,7 +44,7 @@ registerAdapter(myAdapter);
 ```
 
 `ctx` gives you `{ cwd, homeDir, projectRoot }`. `homeDir` already honours
-`AGENTLENS_HOME`, so tests can fake a home directory. `projectRoot` is the
+`INSTRACE_HOME`, so tests can fake a home directory. `projectRoot` is the
 git root or `null`.
 
 ## 3. Source kinds and confidence
@@ -85,7 +85,7 @@ const ec = await resolveAgent(dir, "<id>", HOME);
 assert.ok(ec.loaded.some((s) => s.kind === "project"));
 ```
 
-Set `process.env.AGENTLENS_HOME` to `fixtures/home` (or a temp dir) so tests
+Set `process.env.INSTRACE_HOME` to `fixtures/home` (or a temp dir) so tests
 never touch the real home. Run `npm test` — build, lint and all suites must
 pass on Windows, macOS and Linux.
 

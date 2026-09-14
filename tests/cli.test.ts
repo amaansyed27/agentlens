@@ -13,7 +13,7 @@ function cli(args: string[], cwd: string): Promise<{ stdout: string; stderr: str
     execFile(
       process.execPath,
       [CLI, ...args],
-      { cwd, env: { ...process.env, AGENTLENS_HOME: fx("home"), NO_COLOR: "1" } },
+      { cwd, env: { ...process.env, INSTRACE_HOME: fx("home"), NO_COLOR: "1" } },
       (err, stdout, stderr) => {
         resolve({ stdout: String(stdout), stderr: String(stderr), code: (err as { code?: number })?.code ?? 0 });
       },
@@ -31,7 +31,7 @@ describe("cli smoke", () => {
   it("scan prints agents and tokens", async () => {
     const r = await cli(["scan"], fx("opencode", "basic"));
     assert.equal(r.code, 0);
-    assert.match(r.stdout, /AgentLens/);
+    assert.match(r.stdout, /Instrace/);
     assert.match(r.stdout, /Total/);
   });
 
@@ -42,7 +42,7 @@ describe("cli smoke", () => {
     const j = JSON.parse(r.stdout);
     assert.equal(j.schemaVersion, 1);
     assert.equal(j.command, "scan");
-    assert.match(j.agentlensVersion, /^\d+\.\d+\.\d+/);
+    assert.match(j.instraceVersion, /^\d+\.\d+\.\d+/);
     assert.equal(j.data.version, 1);
     assert.ok(Array.isArray(j.data.agents));
   });

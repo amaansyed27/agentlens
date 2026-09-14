@@ -1,5 +1,5 @@
 /**
- * Shared types for @agentlens/core.
+ * Shared types for instrace-core.
  *
  * All cross-boundary results are plain JSON-serialisable structures so the
  * CLI `--json` output and the programmatic API share one stable shape.
@@ -127,6 +127,6 @@ export interface ScanOptions {
   cwd?: string;
   /** Restrict to one agent (`opencode` | `codex` | `claude`). */
   agent?: string;
-  /** Override home dir (tests / portable use). Honors AGENTLENS_HOME env. */
+  /** Override home dir (tests / portable use). Honors INSTRACE_HOME env. */
   homeDir?: string;
 }
