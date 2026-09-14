@@ -6,12 +6,23 @@
  * a git repository, which would otherwise change project-root resolution.
  */
 import { promises as fs } from "node:fs";
+import { existsSync } from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const testsDir = path.dirname(fileURLToPath(import.meta.url));
-export const REPO_ROOT = path.join(testsDir, "..");
+/**
+ * Repo root, robust to tests running from source (`tests/`) or compiled
+ * output (`tests/dist/`): whichever ancestor contains `fixtures/home` wins.
+ */
+function findRoot(): string {
+  for (const cand of [path.join(testsDir, ".."), path.join(testsDir, "..", "..")]) {
+    if (existsSync(path.join(cand, "fixtures", "home"))) return cand;
+  }
+  return path.join(testsDir, "..", "..");
+}
+export const REPO_ROOT = findRoot();
 export const fx = (...p: string[]): string => path.join(REPO_ROOT, "fixtures", ...p);
 /** Fake home with global configs for all three agents. */
 export const HOME = fx("home");

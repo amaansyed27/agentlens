@@ -10,8 +10,9 @@
   "scripts": {
     "build:core": "npm run build --workspace @agentlens/core",
     "build:cli": "npm run build --workspace agentlens",
+    "build:tests": "tsc -p tests/tsconfig.json",
     "build": "npm run build:core && npm run build:cli",
-    "test": "npm run build && node --test tests/tokenizer.test.ts tests/similarity.test.ts tests/conflicts.test.ts tests/adapters.test.ts tests/edge.test.ts tests/cli.test.ts",
+    "test": "npm run build && npm run build:tests && node --test tests/dist/tokenizer.test.js tests/dist/similarity.test.js tests/dist/conflicts.test.js tests/dist/adapters.test.js tests/dist/edge.test.js tests/dist/cli.test.js",
     "lint": "npm run lint --workspaces",
     "scan": "node packages/cli/dist/index.js scan",
     "benchmark": "node benchmarks/bench.mjs"

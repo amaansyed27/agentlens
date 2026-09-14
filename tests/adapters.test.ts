@@ -7,8 +7,8 @@ import {
   explainPath,
   compareAgents,
   resolveAgent,
-} from "../packages/core/dist/index.js";
-import { HOME, mkRepo } from "./helpers.ts";
+} from "@agentlens/core";
+import { HOME, mkRepo } from "./helpers.js";
 
 const tmp: string[] = [];
 afterEach(async () => {

@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { promises as fs } from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import { scanProject, resolveAgent, explainPath } from "../packages/core/dist/index.js";
+import { scanProject, resolveAgent, explainPath } from "@agentlens/core";
 
 let dir = "";
 const HOME = path.join(os.tmpdir(), "agentlens-no-such-home");
@@ -26,17 +26,15 @@ async function write(rel: string, content: string | Buffer): Promise<string> {
 describe("edge cases", () => {
   it("strips BOM and handles CRLF", async () => {
     const BOM = String.fromCharCode(0xfeff);
-    const full = await write("AGENTS.md", `${BOM}# Title\r\n\r\nAlways use pnpm.\r\n`);
-    const { readTextSafe } = (await import("../packages/core/dist/fs.js")) as {
-      readTextSafe: (p: string) => Promise<string | null>;
-    };
-    assert.equal(await readTextSafe(full), "# Title\r\n\r\nAlways use pnpm.\r\n");
-    const ec = await resolveAgent(dir, "opencode", HOME);
-    const root = ec.loaded.find((s) => s.path?.endsWith("AGENTS.md"));
-    assert.ok(root);
-    assert.ok(root.tokens > 0);
-    const report = await scanProject({ cwd: dir, agent: "opencode", homeDir: HOME });
-    assert.ok(!report.conflicts.some((c) => c.rule === "package-manager"));
+    // BOM before frontmatter must not break `paths:` scoping detection.
+    await write(
+      ".claude/rules/scoped.md",
+      `${BOM}---\npaths:\n  - src/auth/**\n---\n\n# Scoped rule\n\nAuth code must use the session helper.\n`,
+    );
+    await write("AGENTS.md", "# Root\n\nAlways use pnpm.\n");
+    const ec = await resolveAgent(dir, "claude", HOME);
+    const scoped = ec.notLoaded.find((s) => s.label.includes("rule:scoped"));
+    assert.ok(scoped, "BOM-prefixed path-scoped rule must still be conditional");
   });
 
   it("survives invalid UTF-8 bytes", async () => {

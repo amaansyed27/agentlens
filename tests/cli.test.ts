@@ -3,12 +3,10 @@ import assert from "node:assert/strict";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import * as path from "node:path";
-import { fileURLToPath } from "node:url";
+import { REPO_ROOT as root, fx } from "./helpers.js";
 
 const run = promisify(execFile);
-const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const CLI = path.join(root, "packages", "cli", "dist", "index.js");
-const fx = (...p: string[]) => path.join(root, "fixtures", ...p);
 
 function cli(args: string[], cwd: string): Promise<{ stdout: string; stderr: string; code: number }> {
   return new Promise((resolve) => {

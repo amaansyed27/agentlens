@@ -1,5 +1,8 @@
 node_modules/
 packages/*/dist/
+tests/dist/
+smoke/
 *.tsbuildinfo
 .DS_Store
 Thumbs.db
+*.tgz

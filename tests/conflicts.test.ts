@@ -1,6 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { findConflicts } from "../packages/core/dist/index.js";
+import { findConflicts } from "@agentlens/core";
 
 describe("conflicts", () => {
   it("detects package-manager contradictions", () => {
