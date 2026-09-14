@@ -1,20 +1,23 @@
 {
   "name": "instrace-core",
-  "version": "0.1.0",
-  "description": "Core scanner library for Instrace — DevTools for AI coding-agent context",
+  "version": "0.1.1",
+  "description": "Dependency-free library for resolving and comparing coding-agent instruction context.",
   "keywords": [
     "instrace",
     "ai",
     "coding-agent",
+    "agent-context",
     "agents-md",
     "context",
     "devtools",
+    "prompt-debugging",
+    "mcp",
     "opencode",
     "codex",
     "claude-code"
   ],
   "license": "MIT",
-  "author": "Instrace contributors",
+  "author": "Amaan Syed",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/amaansyed27/instrace.git",

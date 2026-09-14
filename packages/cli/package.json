@@ -1,20 +1,23 @@
 {
   "name": "instrace",
-  "version": "0.1.0",
-  "description": "Instrace CLI — DevTools for AI coding-agent context",
+  "version": "0.1.1",
+  "description": "Trace and compare the instructions, rules, skills, and MCP context coding agents actually load.",
   "keywords": [
     "instrace",
     "ai",
     "coding-agent",
+    "agent-context",
     "agents-md",
     "context",
     "devtools",
+    "prompt-debugging",
+    "mcp",
     "opencode",
     "codex",
     "claude-code"
   ],
   "license": "MIT",
-  "author": "Instrace contributors",
+  "author": "Amaan Syed",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/amaansyed27/instrace.git",
@@ -41,7 +44,7 @@
     "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\""
   },
   "dependencies": {
-    "instrace-core": "^0.1.0"
+    "instrace-core": "^0.1.1"
   },
   "devDependencies": {
     "@types/node": "^22.20.2",

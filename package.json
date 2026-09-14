@@ -1,8 +1,8 @@
 {
   "private": true,
   "name": "instrace-monorepo",
-  "version": "0.1.0",
-  "description": "Instrace monorepo — DevTools for AI coding-agent context",
+  "version": "0.1.1",
+  "description": "Instrace monorepo — trace what instructions your coding agent actually sees",
   "type": "module",
   "workspaces": [
     "packages/*"
